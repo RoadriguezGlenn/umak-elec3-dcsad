@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group 1 Links | ELEC3 Cloud Computing</title>
+  <style>
+    :root {
+      --bg: #161616;
+      --surface: #1e1e1e;
+      --input-bg: #2a2a2a;
+      --border: #2e2e2e;
+      --text-primary: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --accent: #ea580c;
+      --accent-hover: #f97316;
+      --avatar-bg: #2a211b;
+      --avatar-border: #7c3f1d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.25rem 3.5rem;
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    main {
+      width: 100%;
+      max-width: 1020px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .avatar {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: var(--avatar-bg);
+      border: 2px solid var(--avatar-border);
+      color: var(--accent);
+      font-size: 1.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .bio {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1.1rem;
+      min-height: 2.6rem;
+    }
+
+    .role {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1.1rem;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #252525;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .aws-badge {
+      width: 100%;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-align: left;
+      background: #242424;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.75rem 0.9rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.18s ease;
+    }
+
+    .aws-badge:hover {
+      border-color: var(--accent);
+    }
+
+    .aws-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ffffff;
+    }
+
+    .aws-icon.s3 { background: #569a31; }
+    .aws-icon.lambda { background: #d97706; }
+    .aws-icon.ec2 { background: #ea580c; }
+
+    .aws-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .aws-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .aws-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .mid-footer {
+      margin: 1.75rem 0 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Guestbook / Comment Board */
+    .guestbook {
+      width: 100%;
+      max-width: 680px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .guestbook h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .guestbook-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.35rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.7rem 0.85rem;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.18s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .btn-post {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .btn-post:hover {
+      background: var(--accent-hover);
+    }
+
+    .comments-list {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .comment-item {
+      background: #242424;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.95rem 1.1rem;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .comment-author {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .comment-time {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+    }
+
+    .comment-body {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Meet Group 1</h1>
+    <p class="subtitle">IV-DCSAD · ELEC3 Cloud Computing</p>
+  </header>
+
+  <main>
+    <!-- Member 1: Glenn -->
+    <article class="card">
+      <div class="avatar" aria-hidden="true">G</div>
+      <h2 class="name">Glenn</h2>
+      <p class="bio">Coordinating cloud deployments and keeping Group 1 on schedule.</p>
+      <span class="role">Project Lead</span>
+
+      <div class="socials">
+        <a class="social-link" href="https://github.com/RoadriguezGlenn" target="_blank" rel="noopener noreferrer" aria-label="Glenn on GitHub" title="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https:https://www.linkedin.com/in/glenn-leenard-rodriguez-b5b83a444/" target="_blank" rel="noopener noreferrer" aria-label="Glenn on LinkedIn" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+      </div>
+
+      <a class="aws-badge" href="https://docs.aws.amazon.com/ec2/" target="_blank" rel="noopener noreferrer">
+        <div class="aws-icon ec2" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <line x1="9" y1="1" x2="9" y2="4"></line>
+            <line x1="15" y1="1" x2="15" y2="4"></line>
+            <line x1="9" y1="20" x2="9" y2="23"></line>
+            <line x1="15" y1="20" x2="15" y2="23"></line>
+            <line x1="20" y1="9" x2="23" y2="9"></line>
+            <line x1="20" y1="14" x2="23" y2="14"></line>
+            <line x1="1" y1="9" x2="4" y2="9"></line>
+            <line x1="1" y1="14" x2="4" y2="14"></line>
+          </svg>
+        </div>
+        <div class="aws-meta">
+          <span class="aws-label">Favorite AWS service</span>
+          <span class="aws-name">Amazon EC2</span>
+        </div>
+      </a>
+    </article>
+
+    <!-- Member 2: Jhone -->
+    <article class="card">
+      <div class="avatar" aria-hidden="true">J</div>
+      <h2 class="name">Jhone</h2>
+      <p class="bio">Learning Amazon S3 static hosting and testing every link.</p>
+      <span class="role">Cloud Engineer</span>
+
+      <a class="aws-badge" href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">
+        <div class="aws-icon s3" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+        </div>
+        <div class="aws-meta">
+          <span class="aws-label">Favorite AWS service</span>
+          <span class="aws-name">Amazon S3</span>
+        </div>
+      </a>
+    </article>
+
+    <!-- Member 3: Jean Lee -->
+    <article class="card">
+      <div class="avatar" aria-hidden="true">J</div>
+      <h2 class="name">Jean Lee</h2>
+      <p class="bio">Likes clean layouts and fast pages.</p>
+      <span class="role">Frontend Developer</span>
+
+      <a class="aws-badge" href="https://docs.aws.amazon.com/lambda/" target="_blank" rel="noopener noreferrer">
+        <div class="aws-icon lambda" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 20L10.5 7"></path>
+            <path d="M8 4h3l9 16h-3.5"></path>
+          </svg>
+        </div>
+        <div class="aws-meta">
+          <span class="aws-label">Favorite AWS service</span>
+          <span class="aws-name">AWS Lambda</span>
+        </div>
+      </a>
+    </article>
+  </main>
+
+  <p class="mid-footer">Group 1 · IV-DCSAD · ELEC3 Cloud Computing</p>
+
+  <!-- Interactive Guestbook / Comment Board -->
+  <section class="guestbook" aria-labelledby="guestbook-heading">
+    <h2 id="guestbook-heading">Guestbook</h2>
+    <p class="guestbook-desc">
+      Leave a message for our group. Our AWS Lambda function stores it in our Amazon DynamoDB table.
+    </p>
+
+    <form id="guestbook-form">
+      <div class="form-group">
+        <label for="visitor-name">Your name</label>
+        <input type="text" id="visitor-name" placeholder="Enter your name" required maxlength="60" />
+      </div>
+
+      <div class="form-group">
+        <label for="visitor-message">Message</label>
+        <textarea id="visitor-message" placeholder="Write a comment for Group 1..." required maxlength="500"></textarea>
+      </div>
+
+      <button type="submit" class="btn-post">Post message</button>
+    </form>
+
+    <div class="comments-list" id="comments-list" aria-live="polite"></div>
+  </section>
+
+  <script>
+    const STORAGE_KEY = "group01_guestbook_comments";
+    const form = document.getElementById("guestbook-form");
+    const nameInput = document.getElementById("visitor-name");
+    const messageInput = document.getElementById("visitor-message");
+    const commentsList = document.getElementById("comments-list");
+
+    const defaultComments = [
+      {
+        name: "Glenn",
+        message: "Welcome to Group 1's S3 static website! Feel free to leave a comment below.",
+        timestamp: "Nov 20, 2026, 2:30 AM"
+      }
+    ];
+
+    function formatTimestamp(date) {
+      return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      }).format(date);
+    }
+
+    function loadComments() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return Array.isArray(saved) && saved.length > 0 ? saved : defaultComments;
+      } catch {
+        return defaultComments;
+      }
+    }
+
+    function saveComments(comments) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+    }
+
+    function renderComments() {
+      const comments = loadComments();
+      commentsList.innerHTML = "";
+
+      comments.forEach((entry) => {
+        const item = document.createElement("div");
+        item.className = "comment-item";
+
+        const header = document.createElement("div");
+        header.className = "comment-header";
+
+        const author = document.createElement("span");
+        author.className = "comment-author";
+        author.textContent = entry.name;
+
+        const time = document.createElement("span");
+        time.className = "comment-time";
+        time.textContent = entry.timestamp;
+
+        const body = document.createElement("p");
+        body.className = "comment-body";
+        body.textContent = entry.message;
+
+        header.appendChild(author);
+        header.appendChild(time);
+        item.appendChild(header);
+        item.appendChild(body);
+        commentsList.appendChild(item);
+      });
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = nameInput.value.trim();
+      const message = messageInput.value.trim();
+      if (!name || !message) return;
+
+      const comments = loadComments();
+      comments.unshift({
+        name,
+        message,
+        timestamp: formatTimestamp(new Date())
+      });
+
+      saveComments(comments);
+      renderComments();
+      messageInput.value = "";
+      messageInput.focus();
+    });
+
+    renderComments();
+  </script>
+</body>
+</html>
