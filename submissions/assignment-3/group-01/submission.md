@@ -32,6 +32,6 @@ A Multi-AZ standby is a synchronous, passive replica maintained strictly for hig
 
 | GitHub username | What this groupmate did |
 | --- | --- |
-| <RoadriguezGlenn> | Configured the three AWS Pricing Calculator RDS estimates, verified the share link, and drafted the client recommendation. |
+| <@RoadriguezGlenn> | Configured the three AWS Pricing Calculator RDS estimates, verified the share link, and drafted the client recommendation. |
 | <jhone-github-username> | Reviewed the AWS RDS configuration parameters, storage calculations, and Multi-AZ vs. read replica comparison. |
 | <jean-lee-github-username> | Verified the Lab 3 client requirements, checked the submission formatting, and prepared the repository pull request. |
